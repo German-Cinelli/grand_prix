@@ -5,7 +5,7 @@ class Utils {
     public static function random_str(
         int $length = 64,
 
-        string $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        string $keyspace = '0123456789abcdefghjkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
         ): string {
         if ($length < 1) {
         throw new \RangeException("Length must be a positive integer");
@@ -22,23 +22,23 @@ class Utils {
         return implode('', $pieces);
     }
 
-    public static function sendOkMessage(){
+    public static function sendOkMessage($code){
         echo '
-        <div class="container">
+        <div class="container mt-3">
             <link rel="stylesheet" href="../public/assets/dist/css/bootstrap.min.css">
             <div class="alert alert-success" role="alert">
-                <h4 class="alert-heading">Inscripción exitosa!</h4>
-                <p>La inscripción ha finalizado con éxito.</p>
+                <h4 class="alert-heading">Inscripción exitosa! Su código es <strong>' . $code . '</strong></h4>
+                <p>La inscripción ha finalizado con éxito. Recuerde almacenar el N° del código.</p>
                 <hr>
                 <span class="mb-0">Haga <a href="../"> clic aquí</a> para ser redirigido.</span>
             </div>
-            </div>
+        </div>
         ';
     }
 
     public static function sendErrorMessage(){
         echo '
-        <div class="container">
+        <div class="container mt-3">
             <link rel="stylesheet" href="../public/assets/dist/css/bootstrap.min.css">
             <div class="alert alert-danger" role="alert">
                 <h4 class="alert-heading">Ha ocurrido un error!</h4>

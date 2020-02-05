@@ -4,8 +4,6 @@ require_once('../database/database.php');
 
 require_once('../helpers/Utils.php');
 
-$random = Utils::random_str(6);
-
 if(isset($_POST)){
 
     $name_piloto = isset($_POST['name_piloto']) ? $_POST['name_piloto'] : false;
@@ -54,7 +52,13 @@ if(isset($_POST)){
         if(!$result){
             Utils::sendErrorMessage();
         } else {
-            Utils::sendOkMessage();
+
+            $sql = 'SELECT code FROM inscriptions ORDER BY id DESC LIMIT 1;';
+            $result = mysqli_query($db, $sql);
+            $data = mysqli_fetch_assoc($result);
+            $code = $data['code'];
+
+            Utils::sendOkMessage($code);
         }
 
 
